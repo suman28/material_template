@@ -1,0 +1,226 @@
+<html data-ng-app="crud-resource">
+<head>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>CRUD using angular-resource</title>
+  <link rel="stylesheet" href="public/css/angular-material.css" type="text/css"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="public/css/v-accordion.css" rel="stylesheet">
+  <link href="public/css/style.css" rel="stylesheet">
+  <script src="public/js/jquery-2.1.3.min.js" type="text/javascript"></script>
+  <script src="public/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="public/js/angular.js" type="text/javascript"></script>
+	<script src="public/js/angular-animate.js" type="text/javascript"></script>
+  <script src="public/js/angular-resource.js" type="text/javascript"></script>
+  <script src="public/js/angular-route.min.js" type="text/javascript"></script>
+	<script src="public/js/angular-material.js" type="text/javascript"></script>
+	<script src="public/js/angular-aria.js" type="text/javascript"></script>
+  <script src="public/js/v-accordion.js" type="text/javascript"></script>
+	<script src="app/client/app.js" type="text/javascript"></script>
+</head>
+<body>
+  <div ng-controller="ResourceController as ctrl" ng-cloak>
+    <!-- <md-toolbar style="background:#2196f3"> -->
+    <md-toolbar>
+      <div class="md-toolbar-tools md-whiteframe-z1">
+        <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()">
+          <!-- <md-icon md-svg-icon="img/icons/menu.svg"></md-icon> -->
+          <img src="public/images/capitallogo.png"/ height=40px; width=40px >
+        </md-button>
+        <!-- <div>
+         <md-button ng-click="toggleLeft()">
+           Toggle left
+         </md-button>
+       </div> -->
+
+        <h2>
+          <span hide-sm>CRUD app using Angular Resource</span>
+        </h2>
+        <span flex></span>
+        <!-- <md-button class="md-icon-button" aria-label="Favorite">
+          <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+        </md-button> -->
+        <div>
+          <md-button ng-click="toggleRight()" class="navbar-button">
+            <i class="material-icons">message</i>
+          </md-button>
+        </div>
+        <div>
+          <md-button ng-click="toggleRight()" class="navbar-button">
+            <i class="material-icons">notifications</i>
+          </md-button>
+        </div>
+
+
+        <md-menu md-position-mode="target-right target" >
+
+         <md-button aria-label="Open demo menu" class="image-button" ng-click="$mdOpenMenu($event)" ng-mouseenter="ctrl.openMenu($mdOpenMenu, $event)">
+
+           <!-- <div class='container2'>
+           		<div>
+           			<img src="public/images/avatar5.png" class="smcircle-img" class='iconDetails'>
+           		</div>
+           	<div style='margin-left:60px;'>
+           	<h4>Facebook</h4>
+
+
+           	</div>
+           </div>
+             <div> -->
+             <div>
+               <div><img src="public/images/avatar5.png" class="smcircle-img" style="float:left; "> </div>
+               <div style="margin-left:50px;"><span class="user_name">Suman</span></div>
+             </div>
+
+
+         </md-button>
+
+         <md-menu-content width="4" >
+           <md-menu-item >
+             <md-button ng-click="ctrl.redial($event)">
+              <i class="material-icons md-white-cyan-theme account_menu_icon">settings</i>
+               Settings
+             </md-button>
+            </md-menu-item>
+             <md-menu-item >
+             <md-button ng-click="ctrl.redial($event)">
+              <i class="material-icons md-white-cyan-theme account_menu_icon">person_outline</i>
+               Profile
+             </md-button>
+            </md-menu-item>
+             <md-divider></md-divider>
+             <md-menu-item >
+             <md-button ng-click="ctrl.redial($event)">
+              <i class="material-icons md-white-cyan-theme account_menu_icon">power_settings_new</i>
+               Logout
+             </md-button>
+             <!-- <md-button ng-click="ctrl.announceClick($index)">
+                 <div layout="row">
+                   <p flex>Option {{item}}</p>
+                   <md-icon md-menu-align-target md-svg-icon="call:portable-wifi-off" style="margin: auto 3px auto 0;"></md-icon>
+                 </div>
+             </md-button> -->
+           </md-menu-item>
+         </md-menu-content>
+       </md-menu>
+        <!-- <md-button class="md-icon-button" aria-label="More">
+          <!-- For modern browsers. -->
+          <!-- <i class="material-icons">account_circle</i> -->
+          <!-- <img src="public/images/avatar5.png" class="smcircle-img">  <span class="user_name">Suman</span>
+
+        </md-button> -->
+      </div>
+
+    </md-toolbar>
+    <div layout="column">
+       <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+        md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" id="sidenav-left">
+         <md-toolbar class="md-theme-light">
+           <img src="public/images/angular-logo.svg" height=150px/>
+           <h1 class="md-toolbar-tools">Angular Material</h1>
+         </md-toolbar>
+          <md-content ng-controller="LeftCtrl" layout-padding="" class="sidenav-left-content">
+            <!-- add `multiple` attribute to allow multiple sections to open at once -->
+            <v-accordion class="vAccordion--default" multiple>
+
+              <!-- add expanded attribute to open the section -->
+              <v-pane expanded>
+
+                <v-pane-header>
+                  <md-button  md-no-ink class="sidenav-btns">
+                    <i class="material-icons">dashboard</i>
+                    <span class="sidenav-menu-item">Dashboard</span>
+                  </md-button>
+                </v-pane-header>
+
+                <v-pane-content>
+                  <md-button class="sidenav-sub-btns">Dashboard1</md-button>
+                  <md-button class="sidenav-sub-btns">Dashboard2</md-button>
+                  <md-button class="sidenav-sub-btns">Dashboard3</md-button>
+                </v-pane-content>
+              </v-pane>
+
+              <v-pane>
+                <v-pane-header>
+                  <md-button  md-no-ink class="sidenav-btns">
+                    <i class="material-icons">insert_chart</i>
+                    <span class="sidenav-menu-item">Charts</span>
+                  </md-button>
+                </v-pane-header>
+
+                <v-pane-content>
+                  <md-button class="sidenav-sub-btns">Chart1</md-button>
+                  <md-button class="sidenav-sub-btns">Chart2</md-button>
+                </v-pane-content>
+              </v-pane>
+              <v-pane>
+                <v-pane-header>
+                  <md-button  md-no-ink class="sidenav-btns">
+                    <i class="material-icons">menu</i>
+                    <span class="sidenav-menu-item">Menu</span>
+                  </md-button>
+                </v-pane-header>
+
+                <v-pane-content>
+                  <md-button class="sidenav-sub-btns">Menu1</md-button>
+                  <md-button class="sidenav-sub-btns">Menu2</md-button>
+                  <md-button class="sidenav-sub-btns">Menu3</md-button>
+                </v-pane-content>
+              </v-pane>
+              <v-pane>
+                <v-pane-header>
+                  <md-button  md-no-ink class="sidenav-btns">
+                    <i class="material-icons">assignment</i>
+                    <span class="sidenav-menu-item">Tables</span>
+                  </md-button>
+                </v-pane-header>
+
+                <v-pane-content>
+                  <md-button class="sidenav-sub-btns">Table1</md-button>
+                  <md-button class="sidenav-sub-btns">Table2</md-button>
+                  <md-button class="sidenav-sub-btns">Table3</md-button>
+                </v-pane-content>
+              </v-pane>
+              <v-pane>
+                <v-pane-header>
+                  <md-button  md-no-ink class="sidenav-btns">
+                    <i class="material-icons">new_releases</i>
+                    <span class="sidenav-menu-item">Elements</span>
+                  </md-button>
+                </v-pane-header>
+
+                <v-pane-content>
+                  <md-button class="sidenav-sub-btns">Element1</md-button>
+                  <md-button class="sidenav-sub-btns">Element2</md-button>
+                  <md-button class="sidenav-sub-btns">Element3</md-button>
+                </v-pane-content>
+              </v-pane>
+
+            </v-accordion>
+          </md-content>
+        </md-sidenav>
+      </section>
+    </div>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2"
+    md-component-id="right"> <md-toolbar
+    class="md-theme-light">
+  <h1 class="md-toolbar-tools">Sidenav Right</h1>
+  </md-toolbar> <md-content ng-controller="RightCtrl" layout-padding="">
+  <form>
+    <md-input-container> <label for="testInput">Test
+      input</label> <input type="text" id="testInput" ng-model="data"
+      md-sidenav-focus=""> </md-input-container>
+  </form>
+  <md-button ng-click="close()" class="md-primary"> Close
+  Sidenav Right </md-button> </md-content>
+  </md-sidenav>
+  <md-content style="margin-left:260px;">
+    
+  </md-content>
+</div>
+</body>
+</html>
